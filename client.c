@@ -29,14 +29,14 @@ void sort_client(int socket) {
     	my_send(n, socket);
 
 	printf("\nEnter elements\n");
-	// send numbers
+	//send numbers to the server
         for(i = 0; i < n; i++) {
 		scanf("%d", &array[i]);
                 my_send(array[i], socket);
         }
 
 	printf("\nSorted elements\n");
-        // revieve numebers
+        //get sorted numbers from the server
         for(i = 0; i < n; i++) {
                 array[i] = my_recieve(socket);
 		printf(" %d", array[i]);
@@ -94,7 +94,7 @@ int main(int argc, char const *argv[])
 	 * ToDo: replace command parsing using strtok() funtion
 	 */
 
-  	printf("\nYour connected to server. Please enter help for more information:");
+  	printf("\nYou are connected to the server. Please enter help for more information:");
 	do {
 		printf("\n# ");
 		scanf("%s", cmd);
