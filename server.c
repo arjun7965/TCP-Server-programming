@@ -3,7 +3,7 @@
 #include <stdlib.h>
 #include <netinet/in.h>
 #include <string.h>
-#define PORT 8080
+#define PORT 8008
 #include "client_server_app.h"
 #include <stdio.h>
 #include <pthread.h>
@@ -98,7 +98,7 @@ int main(int argc, char const *argv[])
         exit(EXIT_FAILURE);
     }
       
-    // Forcefully attaching socket to the port 8080
+        // Forcefully attaching socket to the port 8008
     	if (setsockopt(server_fd, SOL_SOCKET, SO_REUSEADDR | SO_REUSEPORT,
                                                   &opt, sizeof(opt)))
     	{
@@ -109,7 +109,7 @@ int main(int argc, char const *argv[])
     	address.sin_addr.s_addr = INADDR_ANY;
     	address.sin_port = htons( PORT );
       
-    	// Forcefully attaching socket to the port 8080
+        // Forcefully attaching socket to the port 8008
     	if (bind(server_fd, (struct sockaddr *)&address, 
                                  sizeof(address))<0)
     	{
@@ -165,7 +165,7 @@ void* client_handler(void *arg) {
 			case 4:
 				break;
 			default:
-				printf("EORROR: Recieved Unkownd command\n");
+				printf("ERROR: Recieved Unkownd command\n");
 		}
 	} while (cmd_num  != 4);
     	printf("\nClient is disconnected ..");

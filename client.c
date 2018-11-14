@@ -3,7 +3,7 @@
 #include <stdlib.h>
 #include <netinet/in.h>
 #include <string.h>
-#define PORT 8080
+#define PORT 8008
 #include "client_server_app.h"
 
 int fibo_client(int socket) {
