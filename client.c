@@ -100,6 +100,7 @@ int main(int argc, char const *argv[])
         scanf("%s", cmd);
         if (strcmp(cmd, "exit") == 0) {
             my_send(4, sock);
+            close(sock);
         } else if (strcmp(cmd, "fibonacci") == 0) {
             my_send(1, sock);
             fibo_client(sock);
