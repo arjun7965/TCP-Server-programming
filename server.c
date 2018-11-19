@@ -120,10 +120,12 @@ int main(int argc, char const *argv[])
        	exit(EXIT_FAILURE);
     }
     while(1) {
-        printf("\nwaiting for client..");
+        printf("\nConnected to client..");
         if ((new_socket = accept(server_fd, (struct sockaddr *)&address, (socklen_t*)&addrlen))<0) {
-                perror("accept");
-                exit(EXIT_FAILURE);
+            perror("accept");
+            exit(EXIT_FAILURE);
+        } else {
+            printf("\nConnected to client..");
         }
         pthread_create(&threadID, NULL, client_handler, (void *) &new_socket);
     }
@@ -132,16 +134,8 @@ int main(int argc, char const *argv[])
 
 void* client_handler(void *arg)
 {
-    int server_fd, new_socket, valread, count, num;
-    struct sockaddr_in address;
-    int opt = 1;
-    int addrlen = sizeof(address);
-    char buffer[1024] = {0};
-    char *hello = "Hello from server";
-    struct message msg;
-    int cmd_num;
-
-    printf("\nClient is connected ..");
+    int new_socket, count, cmd_num;
+    printf("\nWaiting for client ..");
     new_socket = *((int *) arg);
 
     /* 
@@ -163,9 +157,8 @@ void* client_handler(void *arg)
             case 4:
                 break;
             default:
-                printf("ERROR: Recieved Unkownd command\n");
+                printf("ERROR: Recieved Unknown command\n");
         }
     } while (cmd_num  != 4);
-    printf("\nClient is disconnected ..");
     return 0;
 }

@@ -6,7 +6,7 @@
 #define PORT 8008
 #include "client_server_app.h"
 
-int fibo_client(int socket) 
+int fibo_client(int socket)
 {
     int num, n;
     printf("\nEnter how many numbers");
