@@ -94,7 +94,8 @@ int main(int argc, char const *argv[])
     struct message msg;
     int cmd_num;
     pthread_t threadID;
-      
+
+    printf("\nWaiting for client..");
     // Creating socket file descriptor
     if ((server_fd = socket(AF_INET, SOCK_STREAM, 0)) == 0) {
         perror("socket failed");
@@ -119,14 +120,15 @@ int main(int argc, char const *argv[])
        	perror("listen");
        	exit(EXIT_FAILURE);
     }
-    while(1) {
-        printf("\nConnected to client..");
+    while(1){
         if ((new_socket = accept(server_fd, (struct sockaddr *)&address, (socklen_t*)&addrlen))<0) {
             perror("accept");
             exit(EXIT_FAILURE);
         } else {
-            printf("\nConnected to client..");
-        }
+            send(new_socket, hello, strlen(hello), 0);
+            valread = read(new_socket, buffer, 1024);
+	    printf("\n%s\n", buffer);
+	}
         pthread_create(&threadID, NULL, client_handler, (void *) &new_socket);
     }
 	return 0;
@@ -134,9 +136,9 @@ int main(int argc, char const *argv[])
 
 void* client_handler(void *arg)
 {
-    int new_socket, count, cmd_num;
-    printf("\nWaiting for client ..");
+    int new_socket, count, cmd_num, valread;
     new_socket = *((int *) arg);
+    char buffer[1024] = {0};
 
     /* 
      * ToDo : move this code in new thread for each connection
@@ -155,10 +157,13 @@ void* client_handler(void *arg)
                 server_rand(new_socket);
                 break;
             case 4:
+                valread = read(new_socket, buffer, 1024);
+                printf("%s\n",buffer);
+                close(new_socket);
                 break;
             default:
                 printf("ERROR: Recieved Unknown command\n");
         }
-    } while (cmd_num  != 4);
+    } while (cmd_num != 4);
     return 0;
 }

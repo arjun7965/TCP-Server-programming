@@ -63,6 +63,8 @@ int main(int argc, char const *argv[])
     int sock = 0, valread;
     struct sockaddr_in serv_addr;
     char *hello = "Hello from client";
+    char *connected_str = "Connected to client..";
+    char *disconnect_str = "Disconnected from client..";
     char buffer[1024] = {0};
     struct message msg;
     char cmd[50];
@@ -94,12 +96,16 @@ int main(int argc, char const *argv[])
      * ToDo: replace command parsing using strtok() funtion
     */
 
-    printf("\nYou are connected to the server. Please enter help for more information:");
+    printf("\nYou are connected to the server. Please enter help for more information:\n");
+    valread = read(sock , buffer, 1024);
+    printf("%s\n",buffer);
+    send(sock, connected_str, strlen(connected_str), 0);
     do {
         printf("\n# ");
         scanf("%s", cmd);
         if (strcmp(cmd, "exit") == 0) {
             my_send(4, sock);
+            send(sock, disconnect_str, strlen(disconnect_str), 0);
             close(sock);
         } else if (strcmp(cmd, "fibonacci") == 0) {
             my_send(1, sock);
