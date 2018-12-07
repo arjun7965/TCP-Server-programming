@@ -13,7 +13,7 @@ int fibo_client(int socket)
     scanf("%d", &num);
     my_send(num, socket);
     n = my_recieve(socket);
-    printf("\nAnswer:");
+    printf("\nResult:");
     printf(" %d", n);
 }
 
@@ -36,7 +36,7 @@ void sort_client(int socket)
         my_send(array[i], socket);
     }
 
-    printf("\nSorted elements\n");
+    printf("\nSorted elements in descending order\n");
     //get sorted numbers from the server
     for(i = 0; i < n; i++) {
         array[i] = my_recieve(socket);
