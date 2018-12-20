@@ -7,6 +7,7 @@
 #include "client_server_app.h"
 #include <stdio.h>
 #include <pthread.h>
+#include <unistd.h>
 
 void* client_handler(void *arg);
 
