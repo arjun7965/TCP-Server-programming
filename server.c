@@ -103,8 +103,8 @@ int main(int argc, char const *argv[])
     }
       
     // Forcefully attaching socket to the port 8008
-    if (setsockopt(server_fd, SOL_SOCKET, SO_REUSEADDR | SO_REUSEPORT, &opt, sizeof(opt))) {
-        	perror("setsockopt");
+    if (setsockopt(server_fd, SOL_SOCKET, SO_REUSEADDR | SO_REUSEPORT, &opt, sizeof(opt)) < 0) {
+        	perror("setsockopt(SO_REUSEADDR) failed");
         	exit(EXIT_FAILURE);
     }
     address.sin_family = AF_INET;
@@ -112,7 +112,7 @@ int main(int argc, char const *argv[])
     address.sin_port = htons( PORT );
       
     // Forcefully attaching socket to the port 8008
-    if (bind(server_fd, (struct sockaddr *)&address, sizeof(address))<0) {
+    if (bind(server_fd, (struct sockaddr *)&address, sizeof(address)) < 0) {
        	perror("bind failed");
        	exit(EXIT_FAILURE);
     }
@@ -121,7 +121,7 @@ int main(int argc, char const *argv[])
        	exit(EXIT_FAILURE);
     }
     while(1){
-        if ((new_socket = accept(server_fd, (struct sockaddr *)&address, (socklen_t*)&addrlen))<0) {
+        if ((new_socket = accept(server_fd, (struct sockaddr *)&address, (socklen_t*)&addrlen)) < 0) {
             perror("accept");
             exit(EXIT_FAILURE);
         } else {
@@ -162,7 +162,7 @@ void* client_handler(void *arg)
                 close(new_socket);
                 break;
             default:
-                printf("ERROR: Recieved Unknown command\n");
+                printf("ERROR: Recieved unknown command\n");
         }
     } while (cmd_num != 4);
     return 0;
