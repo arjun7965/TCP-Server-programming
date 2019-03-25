@@ -1,3 +1,6 @@
+
+![CircleCI] (https://circleci.com/gh/arjun7965/TCP-Server-programming.svg?style=svg)](https://circleci.com/gh/arjun7965/TCP-Server-programming)
+
 # TCP-Socket-programming
 A simple multithreaded client-server communication via TCP. The code does the following:
   1. Fibonnaci
