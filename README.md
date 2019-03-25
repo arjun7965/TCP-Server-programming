@@ -1,10 +1,10 @@
 
-![CircleCI] (https://circleci.com/gh/arjun7965/TCP-Server-programming.svg?style=svg)](https://circleci.com/gh/arjun7965/TCP-Server-programming)
+![CircleCI](https://circleci.com/gh/arjun7965/TCP-Server-programming.svg?style=svg)](https://circleci.com/gh/arjun7965/TCP-Server-programming)
 
 # TCP-Socket-programming
 A simple multithreaded client-server communication via TCP. The code does the following:
   1. Fibonnaci
-  2. Sort
+  2. S![CircleCI](https://circleci.com/gh/arjun7965/TCP-Server-programming.svg?style=svg)](https://circleci.com/gh/arjun7965/TCP-Server-programming)ort
   3. Generate random number
   4. Exit
 
