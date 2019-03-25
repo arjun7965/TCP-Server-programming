@@ -1,5 +1,5 @@
 
-![CircleCI](https://circleci.com/gh/arjun7965/TCP-Server-programming.svg?style=svg)](https://circleci.com/gh/arjun7965/TCP-Server-programming)
+[![CircleCI](https://circleci.com/gh/arjun7965/TCP-Server-programming/tree/master.svg?style=svg)](https://circleci.com/gh/arjun7965/TCP-Server-programming/tree/master)
 
 # TCP-Socket-programming
 A simple multithreaded client-server communication via TCP. The code does the following:
