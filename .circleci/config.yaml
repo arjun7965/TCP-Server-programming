@@ -1,12 +1,12 @@
 version: 2
 jobs:
   build:
-    docker:
-      - image: debian:stretch
+    working_directory: ~/TCP-Server-Programming
+    
 
     steps:
-      - checkout
+      - run : make all
 
       - run:
           name: Run all
-          command: ~/make all
+          command: ~/TCP-Server-Programming/make all
